@@ -1,4 +1,4 @@
-Câu 1: Khai báo constructor function Product
+Câu 1:
 function Product(id, name, price, quantity, category, isAvailable) {
   this.id = id;
   this.name = name;
@@ -7,3 +7,63 @@ function Product(id, name, price, quantity, category, isAvailable) {
   this.category = category;
   this.isAvailable = isAvailable;
 }
+Câu 2: 
+const products = [
+  new Product(1, "iPhone 15", 35000000, 10, "Electronics", true),
+  new Product(2, "MacBook Pro", 55000000, 5, "Electronics", true),
+  new Product(3, "AirPods Pro", 6000000, 0, "Accessories", true),
+  new Product(4, "Apple Watch", 12000000, 8, "Accessories", true),
+  new Product(5, "iPad Air", 20000000, 3, "Electronics", false),
+  new Product(6, "Magic Mouse", 2500000, 15, "Accessories", true)
+];
+
+Câu 3: 
+const productNamesPrices = products.map(p => ({
+  name: p.name,
+  price: p.price
+}));
+
+console.log(productNamesPrices);
+
+Câu 4: 
+const inStockProducts = products.filter(p => p.quantity > 0);
+
+console.log(inStockProducts);
+
+Câu 5: Kiểm tra có ít nhất 1 sản phẩm giá > 30.000.000 không
+const hasExpensiveProduct = products.some(p => p.price > 30000000);
+
+console.log(hasExpensiveProduct);
+
+Câu 6: 
+const allAccessoriesAvailable = products
+  .filter(p => p.category === "Accessories")
+  .every(p => p.isAvailable === true);
+
+console.log(allAccessoriesAvailable);
+
+Câu 7: 
+const totalInventoryValue = products.reduce(
+  (total, p) => total + p.price * p.quantity,
+  0
+);
+
+console.log(totalInventoryValue);
+
+Câu 8: 
+for (const p of products) {
+  console.log(`${p.name} - ${p.category} - ${p.isAvailable ? "Đang ban" : "Ngung ban"}`);
+}
+
+Câu 9: 
+for (const key in products[0]) {
+  console.log(key + ": " + products[0][key]);
+}
+
+
+Câu 10: 
+const sellingAndInStockNames = products
+  .filter(p => p.isAvailable && p.quantity > 0)
+  .map(p => p.name);
+
+console.log(sellingAndInStockNames);
